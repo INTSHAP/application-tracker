@@ -32,7 +32,7 @@ export default function LoginForm() {
         <Button
           type="button"
           onClick={() => setLoginType("admin")}
-          text="Recruiter"
+          text="As Recruiter"
           className={clsx("bg-slate-200", {
             "bg-primary": loginType === "admin",
           })}
@@ -40,7 +40,7 @@ export default function LoginForm() {
         <Button
           type="button"
           onClick={() => setLoginType("applicant")}
-          text="Applicant"
+          text="As Applicant"
           className={clsx("bg-slate-200", {
             "bg-primary": loginType === "applicant",
           })}
