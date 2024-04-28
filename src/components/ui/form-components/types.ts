@@ -32,6 +32,34 @@ export type ValidFieldNames =
   | "password"
   | "firstname"
   | "lastname"
-  | "confirmPassword";
+  | "confirmPassword"
+  | "keyword"
+  | "category"
+  | "date_of_birth"
+  | "year_of_graduation"
+  | "skills"
+  | "phonenumber";
 
-export type ValidFieldTypes = "text" | "number" | "password";
+export type ValidFieldTypes = "text" | "number" | "password" | "date" | "email";
+
+interface OptionType {
+  label: string;
+  value: string | string[] | number;
+}
+
+export interface SelectProps
+  extends React.SelectHTMLAttributes<HTMLSelectElement> {
+  options: OptionType[];
+}
+
+export interface FormSelectFieldProps {
+  name: ValidFieldNames;
+  valueAsNumber?: boolean;
+  register: UseFormRegister<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
+  error: FieldError;
+  placeholder: string;
+  label: string;
+  multiple?: boolean;
+  defaultValue: string | string[] | number;
+  options: OptionType[];
+}

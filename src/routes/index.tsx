@@ -4,6 +4,7 @@ import { routesForAuthenticatedOnly } from "./protected-routes";
 import { routesForPublic } from "./public-routes";
 import { routesForNotAuthenticatedOnly } from "./unthenticated-only-routes";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { NavbarWrapper } from "../components/ui/nav/nav-bar";
 
 // Combine and conditionally include routes based on authentication status
 const Routes = () => {
@@ -11,9 +12,15 @@ const Routes = () => {
 
   // merge all routes
   const router = createBrowserRouter([
-    ...routesForPublic,
-    ...(!token ? routesForNotAuthenticatedOnly : []),
-    ...routesForAuthenticatedOnly,
+    {
+      path: "/",
+      element: <NavbarWrapper />,
+      children: [
+        ...routesForPublic,
+        ...(!token ? routesForNotAuthenticatedOnly : []),
+        ...(token ? routesForAuthenticatedOnly : []),
+      ],
+    },
   ]);
 
   // Provide the router configuration using RouterProvider

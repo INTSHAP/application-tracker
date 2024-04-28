@@ -4,8 +4,8 @@ export const publicNavLinks = [
     name: "home",
   },
   {
-    href: "/public",
-    name: "public",
+    href: "/jobs",
+    name: "Jobs",
   },
 ];
 

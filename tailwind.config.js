@@ -9,11 +9,11 @@ export default {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        primary: "#0000ff",
+        primary: "#dd0000",
         secondary: "#ffffff",
       },
       backgroundColor: {
-        primary: "#0000ff",
+        primary: "#dd0000",
         secondary: "#ffffff",
       },
     },
