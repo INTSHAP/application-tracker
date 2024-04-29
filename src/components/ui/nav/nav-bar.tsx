@@ -1,7 +1,6 @@
 import Brand from "../brand";
-import { Button } from "../button";
 import NavDrawer from "./nav-drawer";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../../../context/auth-context";
 import { AuthContextType } from "../../../types/auth/login.types";
 import { useDrawer } from "../../../context/nav-context";
@@ -32,7 +31,14 @@ const Navbar: React.FC = () => {
         ))}
       </div>
       <div className="flex items-center gap-5">
-        {!user && <Button text="Login" className="hidden md:inline-flex" />}
+        {!user && (
+          <Link
+            to={"/login"}
+            className="bg-primary text-white rounded-md p-2 px-8"
+          >
+            Login
+          </Link>
+        )}
         {/* <FaBarsStaggered
           className="text-primary text-xl block"
           onClick={openDrawer}

@@ -5,17 +5,16 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
 import { AuthContextType, LoginResponseType } from "../types/auth/login.types";
 
-export const useLoginUser = () => {
-  const { loginUser } = useAuthFunctions();
+export const useLoginUser = (type: "admin" | "applicant") => {
+  const { loginUser, loginAdminUser } = useAuthFunctions();
   const navigate = useNavigate();
-  const { setToken, setUser, setExpires } = useAuth() as AuthContextType;
+  const { setToken, setUser } = useAuth() as AuthContextType;
   return useMutation({
-    mutationFn: loginUser,
+    mutationFn: type === "admin" ? loginAdminUser : loginUser,
     onSuccess: (data: LoginResponseType) => {
       toast.success("Successfully logged in ");
-      setToken(data.tokens.access.token);
-      setUser(data.user);
-      setExpires(data.tokens.access.expires);
+      setToken(data.signature);
+      setUser({ ...data, isAdmin: type === "admin" });
       navigate("/dashboard");
     },
     onError: (error) => {
@@ -24,16 +23,17 @@ export const useLoginUser = () => {
   });
 };
 
-export const useRegisterUser = () => {
-  const { registerUser } = useAuthFunctions();
+export const useRegisterUser = (type: "admin" | "applicant") => {
+  const { registerUser, registerAdminUser } = useAuthFunctions();
   const navigate = useNavigate();
   return useMutation({
-    mutationFn: registerUser,
+    mutationFn: type === "admin" ? registerAdminUser : registerUser,
     onSuccess: () => {
       toast.success("Successfully registered");
       navigate("/login");
     },
     onError: (error) => {
+      console.log(error);
       toast.error(error.message);
     },
   });

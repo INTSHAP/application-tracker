@@ -16,26 +16,18 @@ export interface StudentRegistration {
   };
 }
 export interface LoginResponseUser {
-  role: string;
-  isEMailVerified: boolean;
+  firstname: string;
+  lastname: string;
   email: string;
-  id: string;
-  name: string;
-  registration: StudentRegistration;
+  isAdmin: boolean;
 }
 
 export interface LoginResponseType {
-  user: LoginResponseUser;
-  tokens: {
-    access: {
-      token: string;
-      expires: string;
-    };
-    refresh: {
-      token: string;
-      expires: string;
-    };
-  };
+  firstname: string;
+  lastname: string;
+  email: string;
+  isAdmin: boolean;
+  signature: string;
 }
 
 export interface AuthContextType {

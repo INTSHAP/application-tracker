@@ -9,5 +9,9 @@ export interface SignupFormData {
 export interface SignupData {
   email: string;
   password: string;
-  name: string;
+  firstname: string;
+  lastname: string;
+  yearsofExperience: string;
+  location: string;
+  phonenumber: string;
 }

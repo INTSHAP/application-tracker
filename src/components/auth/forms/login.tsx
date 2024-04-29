@@ -13,7 +13,7 @@ import clsx from "clsx";
 
 export default function LoginForm() {
   const [loginType, setLoginType] = useState<"admin" | "applicant">("admin");
-  const { mutate, isPending } = useLoginUser();
+  const { mutate, isPending } = useLoginUser(loginType);
   const {
     formState: { errors, isValid },
     register,
@@ -28,7 +28,7 @@ export default function LoginForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex justify-between items-center my-2 w-full">
+      <div className="flex gap-3 justify-between items-center my-2 w-full">
         <Button
           type="button"
           onClick={() => setLoginType("admin")}
@@ -63,9 +63,9 @@ export default function LoginForm() {
         error={errors.password!}
       />
       <Button
-        text="Login"
+        text={isPending ? `Logging in as ${loginType}...` : "Login"}
         type="submit"
-        variant={!isValid ? "secondary" : "default"}
+        variant={!isValid || isPending ? "secondary" : "default"}
         className="w-full"
         disabled={isPending}
       />

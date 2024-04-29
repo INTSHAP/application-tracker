@@ -38,7 +38,10 @@ export type ValidFieldNames =
   | "date_of_birth"
   | "year_of_graduation"
   | "skills"
-  | "phonenumber";
+  | "phonenumber"
+  | "yearsofExperience"
+  | "location"
+  | "age";
 
 export type ValidFieldTypes = "text" | "number" | "password" | "date" | "email";
 
