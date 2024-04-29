@@ -1,3 +1,4 @@
+import AdminLanding from "../pages/AdminLanding";
 import JobApplicationSuccessPage from "../pages/application-success";
 import Dashboard from "../pages/dashboard";
 import HomePage from "../pages/home";
@@ -24,5 +25,9 @@ export const routesForPublic = [
   {
     path: "/jobs",
     element: <JobsPage />,
+  },
+  {
+    path: "/adminlanding",
+    element: <AdminLanding />,
   },
 ];
