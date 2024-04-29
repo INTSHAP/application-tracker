@@ -1,10 +1,12 @@
-const JobCard = ({ jobs }) => {
+import { JobType } from "../../types/job/job.types";
+
+const JobCard = ({ jobs }: { jobs: JobType[] }) => {
   return (
     <div className="">
       <div> Welcome (recreuitername)</div>
 
       <div className="job-list w-[85%] mx-auto">
-        {jobs.map((job, index) => (
+        {jobs.map((job: JobType, index: number) => (
           <div
             key={index}
             className="my-10 border-red-700 border- rounded shadow-lg px-5 hover:bg-slate-100 duration-150 ease-out md:ease-in cursor-pointer"
