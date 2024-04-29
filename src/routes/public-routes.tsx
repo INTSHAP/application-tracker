@@ -1,4 +1,5 @@
 import AdminLanding from "../pages/AdminLanding";
+import JobApplicants from "../pages/JobApplicants";
 import JobApplicationSuccessPage from "../pages/application-success";
 import Dashboard from "../pages/dashboard";
 import HomePage from "../pages/home";
@@ -29,5 +30,9 @@ export const routesForPublic = [
   {
     path: "/adminlanding",
     element: <AdminLanding />,
+  },
+  {
+    path: "/jobapplicants/:jobId",
+    element: <JobApplicants />,
   },
 ];
