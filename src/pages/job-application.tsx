@@ -1,24 +1,13 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { jobs } from "../data/jobs";
-import { JobType } from "../types/job/job.types";
-import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import Job from "../components/job/job";
 import JobApplicationForm from "../components/job/application-form";
+import { useGetSingleJob } from "../services/job/job.hooks";
 
 const JobApplicationPage: React.FC = () => {
   const { jobId } = useParams();
-  const [job, setJob] = useState<JobType | null>(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!jobId) {
-      navigate("/jobs");
-    }
-    const filteredJob = jobs.filter((job) => job.id === jobId)[0];
-    setJob(filteredJob); //eslint-disable-next-line
-  }, [jobId]);
-
-  if (!job)
+  const { data, isLoading } = useGetSingleJob(jobId!);
+  if (isLoading) return <h1>Loading ....</h1>;
+  if (!data) {
     return (
       <div className="w-full justify-center items-center">
         <h1>Job not found</h1>
@@ -27,12 +16,13 @@ const JobApplicationPage: React.FC = () => {
         </Link>
       </div>
     );
+  }
   return (
     <div className="flex flex-col gap-5 justify-center items-center p-5 w-full md:w-3/5 mx-auto pb-20">
       <h1 className="text-center text-primary text-xl font-semibold border-b-4 border-primary pb-3">
         Job Appplication
       </h1>
-      <Job {...job} />
+      <Job {...data} />
       <JobApplicationForm />
     </div>
   );
